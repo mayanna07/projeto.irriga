@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Irrigação Automatizado com ESP32</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Sistema de Irrigação Automatizado com ESP32</h1>
+
+    <p class="autores">
+        Allana Carla Marques de Araujo<br>
+        Eduardo Rodrigues Aires<br>
+        Rhamayanna Diniz Lima
+    </p>
+
+    <p class="orientacao">
+        Orientação: Prof. Dr. Gustavo Fernandes de Lima<br>
+        Coorientação: Prof. Jurandy Martins Soares Junior
+    </p>
+</header>
+
+<main>
+
+<section>
+    <h2>Introdução</h2>
+
+    <p>
+        Este projeto apresenta o desenvolvimento de um <strong>sistema automatizado de irrigação</strong>
+        utilizando a placa microcontroladora <strong>ESP32</strong>, reconhecida por sua versatilidade,
+        baixo custo e conectividade integrada via <strong>Wi-Fi e Bluetooth</strong>. A proposta aplica
+        conceitos de <strong>automação</strong> e <strong>Internet das Coisas (IoT)</strong> para o controle
+        eficiente da umidade do solo em um jardim real, promovendo o <strong>uso racional da água</strong>
+        e a <strong>redução de desperdícios</strong>.
+    </p>
+
+    <p>
+        Diante da crescente preocupação com a escassez dos recursos hídricos, torna-se essencial o
+        desenvolvimento de soluções tecnológicas que contribuam para a otimização de sistemas de
+        irrigação. Nesse contexto, o projeto busca unir <strong>tecnologia, sustentabilidade e praticidade</strong>,
+        oferecendo uma alternativa automatizada e funcional para o manejo adequado da irrigação.
+    </p>
+
+    <div class="galeria">
+        <figure>
+            <img src="images/esp32.webp" alt="Placa ESP32">
+            <figcaption>
+                Figura 1 – Placa microcontroladora ESP32 utilizada no projeto.<br>
+                Fonte: Arana Corp (2016). Disponível em <a href="https://www.aranacorp.com" target="_blank" rel="noopener noreferrer">https://www.aranacorp.com</a> 
+            </figcaption>
+            
+        </figure>
+    </div>
+</section>
+
+<section>
+    <h2>Objetivo do Projeto</h2>
+
+    <p>
+        O objetivo principal deste projeto é desenvolver um sistema capaz de
+        <strong>automatizar o processo de irrigação</strong>, acionando a liberação de água apenas
+        quando necessário, de acordo com as condições do ambiente.
+    </p>
+
+    <p>
+        Além disso, o sistema visa possibilitar o <strong>monitoramento remoto</strong> dos dados
+        coletados, facilitando a análise do funcionamento da irrigação ao longo do tempo e
+        contribuindo para tomadas de decisão mais eficientes.
+    </p>
+</section>
+
+<section>
+    <h2>Desenvolvimento do Sistema</h2>
+
+    <h3>Descrição Geral</h3>
+
+    <p>
+        O sistema é composto pela integração da <strong>placa ESP32</strong> com sensores de
+        <strong>umidade do solo</strong>, <strong>temperatura e umidade do ar</strong> e
+        <strong>detecção de chuva</strong>, permitindo a coleta contínua de dados ambientais.
+        Com base nessas informações, o microcontrolador realiza decisões automáticas, acionando
+        uma <strong>válvula solenoide de 12 Vcc</strong> apenas quando a umidade do solo estiver
+        abaixo do nível ideal e não houver ocorrência de chuva.
+    </p>
+
+    <p>
+        Essa abordagem garante uma irrigação mais <strong>precisa, eficiente e sustentável</strong>,
+        evitando o uso excessivo de água.
+    </p>
+</section>
+
+<section>
+    <h3>Componentes Utilizados</h3>
+
+    <p>O projeto utiliza os seguintes componentes principais:</p>
+
+    <ul>
+        <li><strong>Placa ESP32</strong>: responsável pelo processamento dos dados e tomada de decisões automáticas.</li>
+        <div class="galeria">
+            <figure>
+                <img src="images/esp.jpeg" alt="Placa ESP32">
+                <figcaption>Figura 2 – Placa ESP32.<br>
+                    Fonte: Autoral.</figcaption>
+            </figure>
+        </div>
+
+        <li><strong>Sensor de umidade do solo</strong>: monitora a necessidade de irrigação.</li>
+        <figure>
+            <img src="images/umidade-solo.PNG" alt="Sensor de umidade do solo">
+            <figcaption>Figura 3 – Sensor de umidade do solo.<br>
+                Fonte: Autoral.</figcaption>
+        </figure>
+    </div>
+
+        <li><strong>Sensor de nível de água</strong>: auxilia no controle da disponibilidade de água.</li>
+       
+        <figure>
+            <img src="images/nivel-agua.jpg" alt="Sensor de nível de água">
+            <figcaption>Figura 4 – Sensor de nível de água.<br>
+                Fonte: Autoral.</figcaption>
+        </figure>
+    </div>
+
+        <li><strong>Sensor DHT11</strong>: mede a temperatura e a umidade do ar.</li>
+       
+        <figure>
+            <img src="images/dht11.jpg" alt="Sensor DHT11">
+            <figcaption>Figura 5 – Sensor DHT11.<br>
+                Fonte: Autoral.</figcaption>
+        </figure>
+    </div>
+
+        <li><strong>Válvula solenoide 12 Vcc</strong>: realiza o controle do fluxo de água.</li>
+       
+        <figure>
+            <img src="images/valvula.webp" alt="Válvula solenoide">
+            <figcaption>    Figura 6 – Válvula solenoide de 12 Vcc.<br>
+    Fonte: Autocore Robótica. Disponível em <a href="https://www.autocorerobotica.com.br" target="_blank" rel="noopener noreferrer">https://www.autocorerobotica.com.br</a> </figcaption>
+        </figure>
+    </div>
+
+        <li><strong>Circuito de potência</strong>: composto por MOSFET e optoacoplador para acionamento seguro da válvula.</li>
+        <figure>
+            <img src="images/mosfet.webp" alt="Mosfet IRLZ44N">
+            <figcaption>Figura 7 – Placa ESP32.<br>
+                Fonte: AF Eletronica. Disponível em <a href="https://www.afeletronica.com.br/" target="_blank" rel="noopener noreferrer">https://www.afeletronica.com.br</a> </figcaption>
+        </figure>
+
+    </div>
+
+    </ul>
+
+   
+        
+        
+
+
+       
+
+      
+       
+</section>
+
+<section>
+    <h2>Interface Web e Monitoramento</h2>
+
+    <p>
+        Os dados coletados pelos sensores são armazenados em arquivos no formato <strong>CSV</strong>
+        e disponibilizados em uma <strong>interface web desenvolvida em React.js</strong>, acessível
+        por meio de um navegador de internet. A interface permite o acompanhamento remoto do sistema,
+        apresentando os dados de forma organizada e visual, o que facilita a análise do desempenho
+        da irrigação ao longo do tempo.
+    </p>
+
+    <div class="galeria">
+        <figure>
+            <img src="images/interface1.png" alt="Interface web do sistema">
+            <figcaption>Figura 8 – Interface web para monitoramento do sistema de irrigação.</figcaption>
+        </figure>
+        <figure>
+            <img src="images/interface2.png" alt="Interface web do sistema">
+            <figcaption>Figura 9 – Interface web para monitoramento do sistema de irrigação.</figcaption>
+        </figure>
+    </div>
+
+    <p class="link">
+        A interface web pode ser acessada em:<br>
+        <a href="https://irrigador-automatizado.vercel.app/" target="_blank">
+            https://irrigador-automatizado.vercel.app/
+        </a>
+    </p>
+</section>
+
+<section>
+    <h2>Resultados e Discussões</h2>
+
+    <h3>Testes da Alimentação do Sistema</h3>
+    <p>
+        Durante a fase de testes, ao conectar a fonte de alimentação de <strong>12 Vcc</strong>
+        ao circuito, observou-se que os sensores foram energizados corretamente. No entanto,
+        o <strong>ESP32 não apresentou sinais de funcionamento</strong>, como inicialização ou
+        comunicação com o computador, indicando uma possível falha no circuito de alimentação.
+    </p>
+
+    <h3>Análise da Alimentação</h3>
+    <p>
+        Foram realizadas medições com multímetro em pontos estratégicos do circuito. Verificou-se
+        uma tensão de entrada de aproximadamente <strong>11,60 V</strong>. Entretanto, ao medir a
+        saída do regulador de tensão <strong>7805</strong>, identificou-se um valor aproximado de
+        <strong>2,6 V</strong>, insuficiente para o funcionamento adequado do microcontrolador.
+    </p>
+
+    <h3>Hipóteses Levantadas</h3>
+    <ul>
+        <li>Defeito no regulador de tensão 7805</li>
+        <li>Sobrecarga na saída do regulador</li>
+        <li>Ausência de capacitores de filtragem</li>
+        <li>Aquecimento excessivo do componente</li>
+    </ul>
+
+    <h3>Procedimentos e Solução Adotada</h3>
+    <p>
+        Foram realizados testes adicionais com aumento da tensão de entrada para 15 V, momento em que o regulador passou a fornecer os 5 V esperados. Contudo, após desligar e religar o sistema, a tensão de saída voltou a cair para aproximadamente 2,6 V, confirmando a instabilidade do componente.
+
+Diante disso, optou-se pela remoção do regulador de tensão da placa para testes individuais.
+
+Após a substituição do regulador de tensão 7805 por outro componente do mesmo modelo, novos testes foram realizados. Verificou-se que, com 12 V na entrada, o regulador passou a fornecer 5 V estáveis na saída, conforme especificado em datasheet.
+
+Com isso, o ESP32 passou a operar normalmente, confirmando que a falha estava relacionada ao defeito do regulador anteriormente utilizado.
+    </p>
+
+    <h3>Testes do Acionamento da Válvula</h3>
+    <p>
+        Após a estabilização da alimentação, foram realizados testes no sistema de acionamento da válvula solenoide. Observou-se que, apesar do sistema estar corretamente alimentado e dos sensores funcionarem normalmente, a válvula não foi acionada, mesmo com o ESP32 enviando corretamente o sinal de controle.
+
+O acionamento foi realizado por meio de um MOSFET IRLZ44N, utilizando um optoacoplador para isolamento elétrico e envio de 5 V ao gate do MOSFET. Apesar dos testes prévios do componente em protoboard e das medições realizadas com multímetro, o acionamento da válvula não ocorreu conforme o esperado.
+    </p>
+
+    <h3>Considerações Parciais</h3>
+    <p>
+        Com base nos testes realizados, conclui-se que o sistema apresenta funcionamento parcial, com êxito na alimentação, leitura dos sensores e envio dos sinais de controle pelo ESP32. Entretanto, o estágio de potência responsável pelo acionamento da válvula solenoide necessita de análises adicionais, a serem realizadas em ambiente de laboratório, para a identificação precisa da causa da falha.
+    </p>
+
+</section>
+
+<section>
+    <h2>Conclusão</h2>
+
+    <p>
+        O sistema de irrigação automatizado com ESP32 demonstra o <strong>potencial da automação e
+        da IoT</strong> na otimização do uso da água em ambientes reais. O projeto contribui para a
+        <strong>redução do consumo excessivo de recursos hídricos</strong>, além de facilitar o
+        monitoramento e a análise do processo de irrigação por meio de uma interface web.
+    </p>
+
+    <p>
+        Além dos resultados técnicos, o projeto reforça a importância da
+        <strong>aplicação prática dos conhecimentos</strong> adquiridos em eletrônica, automação e
+        programação, evidenciando a viabilidade de soluções tecnológicas
+        <strong>acessíveis, sustentáveis e aplicáveis ao cotidiano</strong>.
+    </p>
+
+    <figure>
+        <img src="images/circuitofinal.jpeg" alt="Circuito finalizado">
+        <figcaption>Figura 10 – Circuito do projeto de irrigação automatizado finalizado. <br>
+            Fonte: Autoral.
+        </figcaption>
+    </figure>
+
+</section>
+
+</main>
+
+<footer>
+    <p>
+        Projeto desenvolvido por Allana Carla Marques de Araujo, Eduardo Rodrigues Aires e
+        Rhamayanna Diniz Lima.
+    </p>
+</footer>
+
+
+
+</body>
+</html>
